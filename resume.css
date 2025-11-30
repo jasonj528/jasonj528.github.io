@@ -2,7 +2,7 @@
 	--blue: #1e73be;
 	--bg: #f4f7fb;
 	--card: #ffffff;
-	--muted: #6b7785;
+	--muted: #4c545e;
 	--text: #0b2540;
 }
 
@@ -260,6 +260,7 @@ body h1::after{
 .responsibilities{
 	margin:10px 0 0 0;
 	padding-left:20px;
+	color:var(--muted);
 }
 .responsibilities li{
 	margin:6px 0;
@@ -268,6 +269,7 @@ body h1::after{
 }
 
 .contractindustry{display:block;margin-top:8px;font-weight:700;color:var(--blue)}
+
 
 
 /* Employer entries: visually separate each employer */
