@@ -1,0 +1,319 @@
+:root{
+	--blue: #1e73be;
+	--bg: #f4f7fb;
+	--card: #ffffff;
+	--muted: #6b7785;
+	--text: #0b2540;
+}
+
+/* Page layout */
+html,body{
+	height:100%;
+	margin:0;
+}
+body{
+	background: linear-gradient(180deg,var(--bg),#e9f7ff);
+	font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	color:var(--text);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	padding:40px 20px;
+
+	/* Layout: two columns on wide viewports, stacked on narrow */
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: minmax(260px,360px) minmax(360px,960px);
+	gap:28px;
+	justify-content:center;
+	align-items:start;
+	grid-auto-rows: auto;
+}
+
+/* Each top-level div becomes a card that fills its grid column */
+body > div{
+	/* make the left/right column wrappers neutral so inner sections stand out */
+	width:100%;
+	background:transparent;
+	border-radius:0;
+	padding:0;
+	box-shadow:none;
+}
+
+/* Place the left and right column wrappers into the two columns */
+#leftcolumn{ grid-column: 1; }
+#rightcolumn{ grid-column: 2; }
+
+/* Ensure content doesn't overflow its card on small widths */
+*, *::before, *::after { box-sizing: inherit; }
+body { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+
+/* Make long words wrap to avoid horizontal scrolling */
+body { overflow-wrap: break-word; word-wrap: break-word; }
+
+/* H1 styling to match page tone */
+/* Section headings: centered, full-width, with an accent divider underneath */
+body h1{
+	display:block;
+	width:100%;
+	text-align:center;
+	font-size:1.15rem;
+	margin:0 0 18px 0;
+	color:var(--blue);
+	font-weight:800;
+	padding-bottom:14px;
+	position:relative;
+	background:transparent;
+	box-shadow:none;
+}
+
+body h1::after{
+	content: "";
+	position:absolute;
+	left:8%;
+	right:8%;
+	bottom:6px;
+	height:4px;
+	background:var(--blue);
+	opacity:0.12;
+	border-radius:4px;
+}
+
+/* Section delineation inside each column: make each child a subtle card */
+#leftcolumn > div, #rightcolumn > div{
+	background: #ffffff;
+	padding:14px 16px;
+	border-radius:10px;
+	box-shadow:0 12px 30px rgba(16,44,73,0.08);
+	border:1px solid rgba(16,44,73,0.06);
+	margin-bottom:20px;
+}
+
+/* Introduction: grid layout so photo and text align neatly */
+#introduction{
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-auto-rows: auto;
+	gap:8px 18px;
+	align-items:start;
+	align-content:start;
+}
+#profilephoto{
+	width:110px;
+	height:110px;
+	border-radius:50%;
+	object-fit:cover;
+	border:4px solid rgba(30,115,190,0.15);
+	box-shadow:0 6px 18px rgba(30,115,190,0.06);
+	grid-column:1;
+	grid-row:1 / span 2;
+}
+#name{
+	grid-column:2;
+	grid-row:1;
+	display:block;
+	font-size:1.6rem;
+	font-weight:800;
+	color:var(--blue);
+	margin:0;
+    text-align: center;
+}
+#title{
+	grid-column:2;
+	grid-row:2;
+	display:block;
+	font-size:1.05rem;
+	font-weight:600;
+	color:var(--text);
+	margin:0;
+	padding-bottom:0;
+    text-align: center;
+}
+
+/* Divider below the grouped head (photo + name + title) */
+.intro-head{
+	display:grid;
+	grid-template-columns: max-content 1fr;
+	grid-auto-rows:auto;
+	gap:8px 16px;
+	align-items:center;
+	align-content:start;
+	padding-bottom:14px;
+	margin-bottom:6px;
+	grid-column:1 / -1;
+    position:relative;
+}
+
+.intro-head::after{
+    content: "";
+    position:absolute;
+    left:8%;
+    right:8%;
+    bottom:2px;
+    height:4px;
+    background:var(--blue);
+    opacity:0.12;
+    border-radius:4px;
+}
+
+/* Contact / address lines */
+#introduction span, #introduction a{
+	display:block;
+	font-size:0.95rem;
+	color:var(--muted);
+	text-decoration:none;
+}
+#introduction a:hover{
+    text-decoration:underline;
+}
+
+/* Icons for contact items using SVG */
+#address1::before,
+#phone::before,
+#email::before,
+#linkedin::before,
+#github::before{
+	content: "";
+	display:inline-block;
+	width:16px;
+	height:16px;
+	margin-right:8px;
+    margin-bottom:4px;
+	vertical-align:middle;
+	background-size:16px 16px;
+	background-repeat:no-repeat;
+	opacity:0.95;
+}
+
+/* location pin */
+#address1::before{background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C8.686 2 6 4.686 6 8c0 5.25 6 12 6 12s6-6.75 6-12c0-3.314-2.686-6-6-6zM12 10.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");}
+
+/* phone */
+#phone::before{background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.99.38 1.95.76 2.86a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.22-1.22a2 2 0 0 1 2.11-.45c.91.38 1.87.64 2.86.76A2 2 0 0 1 22 16.92z' fill='none' stroke='%236b7785' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");}
+
+/* envelope */
+#email::before{background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 8.5V19a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8.5l-9 6-9-6zM21 7H3l9 6 9-6z' fill='none' stroke='%236b7785' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");}
+
+/* social for linkedin */
+#linkedin::before{background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='8' r='3' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/><path d='M4 20c0-3 4-5 8-5s8 2 8 5' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");}
+
+/* brackets for github */
+#github::before{background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M16 18l6-6-6-6M8 6l-6 6 6 6' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");}
+
+/* Link SVG for anchor tags */
+/* #introduction a::after{
+	content: "";
+	display:inline-block;
+	width:18px;
+	height:18px;
+	margin-left:2px;
+    margin-bottom:4px;
+	vertical-align:middle;
+	background-size:18px 18px;
+	background-repeat:no-repeat;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10.59 13.41a2 2 0 0 0 2.83 0l3.54-3.54a2 2 0 0 0-2.83-2.83l-1.06 1.06' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/><path d='M13.41 10.59a2 2 0 0 0-2.83 0L7.04 14.53a2 2 0 0 0 2.83 2.83l1.06-1.06' fill='none' stroke='%236b7785' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+	opacity:0.95;
+} */
+
+#proficiencies ul{
+	list-style:none;
+	margin:0;
+	padding:12px 6px 6px 6px;
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+	gap:10px;
+	align-items:start;
+}
+#proficiencies li{
+	background: rgba(30,115,190,0.07);
+	color:var(--blue);
+	padding:8px 12px;
+	border-radius:8px;
+	font-weight:600;
+	text-align:center;
+}
+
+/* Education */
+#education{text-align:center;}
+#institution{display:block;font-weight:700;color:var(--text);}
+#graduatedtime{display:block;color:var(--muted);margin-bottom:6px}
+#degree{display:block;color:var(--muted)}
+
+#degree #major, #degree #minor, #degree #honors{
+	font-weight:700;
+	color:var(--muted);
+}
+
+/* Work Experience */
+#workexperience{padding-top:0}
+.employerentry, .volunteerorg{
+	padding:12px 14px;
+	border-left:4px solid rgba(30,115,190,0.18);
+	margin-bottom:12px;
+	border-radius:6px;
+	background:linear-gradient(180deg,#ffffff,#fbfdff);
+}
+.employername{font-weight:800;color:var(--text);display:block}
+.employmenttime{font-size:0.95rem;color:var(--muted);float:right}
+.jobtitle{display:block;color:var(--blue);font-weight:700;margin-top:6px}
+
+.responsibilities{
+	margin:10px 0 0 0;
+	padding-left:20px;
+}
+.responsibilities li{
+	margin:6px 0;
+	line-height:1.35;
+	text-align:left;
+}
+
+.contractindustry{display:block;margin-top:8px;font-weight:700;color:var(--blue)}
+
+
+/* Employer entries: visually separate each employer */
+/* .employerentry, .volunteerorg {
+	background: #ffffff;
+	border:1px solid rgba(16,44,73,0.06);
+	border-radius:8px;
+	padding:14px 16px;
+	box-shadow:0 8px 18px rgba(16,44,73,0.05);
+	margin-bottom:14px;
+} */
+
+.contractentry{
+	margin-left:12px;
+	padding-left:12px;
+	border-left:3px solid rgba(16,44,73,0.04);
+}
+
+.employmenttime{line-height:1}
+
+
+/* Volunteering */
+.volunteerorg{padding:12px 6px}
+.volunteerorgname{font-weight:700;color:var(--text);display:block}
+
+
+/* Small screens */
+@media (max-width:800px){
+	/* Stack vertically and make each card full width on narrower viewports */
+	body{
+		grid-template-columns: 1fr;
+		padding:20px;
+		gap:14px;
+	}
+
+	/* Reset explicit column placement so elements flow in source order */
+	#leftcolumn, #rightcolumn{
+		grid-column: auto;
+	}
+
+	/* Make introduction stack on mobile */
+	#introduction, .intro-head{
+		display:flex;
+		flex-direction:column;
+		align-items:center;
+		text-align:center;
+		gap:8px;
+	}
+}
